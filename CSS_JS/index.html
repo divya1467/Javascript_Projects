@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing with CSS and JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Updating css variables with <span class="change">JS!</span></h2>
+    <div class="controls">
+        <label for="spacing">Spacing:</label>
+        <input id="spacing"name="spacing" type="range" min="10" max="200" data-sizing="px">
+        <label for="blur">Blur:</label>
+        <input id="blur" name="blur" type="range" min="0" max="25" value="10" data-sizing="px">
+        <label for="color">Base-color:</label>
+        <input id="color" name="base" type="color">
+        
+    </div>
+    <img src="background.jpg" alt="background">
+    <script>
+        const inputs=document.querySelectorAll('.controls input');
+        function update(){
+            const suffix= this.dataset.sizing||"";
+            document.documentElement.style.setProperty(`--${this.name}`,this.value + suffix);
+        }
+        inputs.forEach(input=>input.addEventListener('change',update));
+        inputs.forEach(input=>input.addEventListener('mousemove',update));
+    </script>
+</body>
+</html>
